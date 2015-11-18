@@ -6,14 +6,14 @@ namespace Projet.Niveau1.CalculatriceBasique
     {
         private static void Main(string[] args)
         {
-            Affichage.Afficher("Bonjour maître Anis !");
+            Affichage.AffichageCouleur("Bonjour maître Anis !", ConsoleColor.Yellow);
             TypeOperation();
         }
 
         private static void TypeOperation()
         {
-            Affichage.Afficher("Quelle type d'opération souhaitez vous faire :");
-            Affichage.Afficher("1.Addition");
+            Affichage.AffichageCouleur("Quelle type d'opération souhaitez vous faire :", ConsoleColor.Red);
+            Affichage.AffichageCouleur("1.Addition", ConsoleColor.DarkBlue);
             Affichage.Afficher("2.Soustraction");
             Affichage.Afficher("3.Multiplication");
             Affichage.Afficher("4.Division");
@@ -54,7 +54,6 @@ namespace Projet.Niveau1.CalculatriceBasique
                 double premierChiffre = Convert.ToDouble(Console.ReadLine());
                 Affichage.AfficherSansRetourLigne("Second nombre :");
                 double secondChiffre = Convert.ToDouble(Console.ReadLine());
-
                 var calcul = new Calcul(premierChiffre, secondChiffre);
                 var resultat = calcul.multiplication();
 
@@ -67,12 +66,18 @@ namespace Projet.Niveau1.CalculatriceBasique
                 double premierChiffre = Convert.ToDouble(Console.ReadLine());
                 Affichage.AfficherSansRetourLigne("Second nombre :");
                 double secondChiffre = Convert.ToDouble(Console.ReadLine());
-
                 var calcul = new Calcul(premierChiffre, secondChiffre);
                 var resultat = calcul.division();
 
+                if (secondChiffre == 0)
+                {
+                    Console.WriteLine("Impossible de diviser par 0 !");
+                    TypeOperation();
+                        }
+
                 Affichage.Afficher("Le résultat est : " + resultat);
                 TypeOperation();
+                
             }
            
             {
